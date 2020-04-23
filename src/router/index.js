@@ -1,6 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
+import index from '../components/home/index'
+import login from '../components/home/login'
+import searchResult from '../components/home/searchResult'
+import search from '../components/home/search'
+import addCompany from '../components/page/addCompany'
 
 Vue.use(Router)
 
@@ -8,8 +12,23 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'HelloWorld',
-      component: HelloWorld
+      redirect: '/index'
+    },{
+      path: '/index',
+      component: index,
+      children: [{
+        path: '/search',
+        component: search
+      },{
+        path: '/login',
+        component: login
+      },{
+        path: '/searchResult',
+        component: searchResult
+      }]
+    },{
+      path: '/addCompany',
+      component: addCompany
     }
   ]
 })
