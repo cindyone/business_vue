@@ -6,9 +6,9 @@
                     <img src="../../assets/logo.png" alt="" width="50px" height="50px">
                 </div>
                 <div class="item-text">
-                    <label for="" class="company-name">企业名称</label>
-                    <div class="area">中国&nbsp;&nbsp;上海市&nbsp;&nbsp;上海市&nbsp;&nbsp;杨浦区</div>
-                    <div class="address">中国&nbsp;&nbsp;上海市&nbsp;&nbsp;上海市&nbsp;&nbsp;杨浦区</div>
+                    <label for="">{{item.fullName}}</label>
+                    <div class="area">{{item.country.name}}&nbsp;&nbsp;{{item.province.name}}&nbsp;&nbsp;{{item.city.name}}&nbsp;&nbsp;{{item.district.name}}</div>
+                    <div class="address">{{item.address}}</div>
                 </div>
             </div>
         </div>
@@ -19,7 +19,48 @@
     </div>
 </template>
 
-<script></script>
+<script>
+    import bus from '../../utils/bus'; 
+    export default {
+        data() {
+            return {
+                passWord: '',
+                item: {
+            "id": 0,
+            "fullName": "江苏五水环境工程有限公司",
+            "logo": "huanbao.png",
+            "address": "南莫镇建设东路3号（镇政府东侧）",
+            "country": {
+                "id": "156",
+                "name": "中国"
+            },
+            "province": {
+                "id": "320000",
+                "name": "江苏省"
+            },
+            "city": {
+                "id": "320600",
+                "name": "南通市"
+            },
+            "district": {
+                "id": "320621",
+                "name": "海安县"
+            }
+        }
+            }
+        },
+        created() {
+            
+        },
+        beforeDestroy() {
+        },
+        mounted() {
+        },
+        methods: {
+            
+        }
+    }
+</script>
 
 <style scoped>
 
@@ -44,7 +85,7 @@
     margin: 5px;
 }
 .item-text{
-    width: 200px;
+    width: 300px;
     text-align: start;
 }
 .item-text label{

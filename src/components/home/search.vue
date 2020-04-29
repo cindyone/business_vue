@@ -7,12 +7,12 @@
         <div class="btn">
             <input type="button" value="搜索" @click="search">
         </div>
-    </div>
-    
+    </div>    
 </template>
 
 <script>
-    import bus from '../../utils/bus'; 
+    import bus from '../../utils/bus'
+    import data from '../../utils/data' 
     export default {
         data() {
             return {
@@ -40,16 +40,18 @@
                     bus.$emit('alertMsg','输入内容不能为空！')
                 }else {
                     self.$store.dispatch('_searchName')
-                    bus.$on('_searchName',function(data){
-                        // 搜索结果操作
-                        
-                        console.log(data)
+                    bus.$on('searchName',function(data){
+                        if(data.length == 1){
+                            self.$router.push('/login?id='+data[0].id)
+                        }else{
+                            self.$router.push('/searchResult?keyword='+name)
+                        }
                     })
                 }
             }
         },
         beforeDestroy() {
-            this.$bus.off('_searchName')
+            this.$bus.off('searchName')
         }
     }
 </script>

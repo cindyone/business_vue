@@ -1,64 +1,42 @@
 <template>
     <div>
         <div class="list" id="list" style="overflow:auto;">
-            <div class="item">
+            <div v-for="item in items" class="item">
                 <div class="item-img">
                     <img src="../../assets/logo.png" alt="" width="50px" height="50px">
                 </div>
                 <div class="item-text">
-                    <label for="">{p.full}</label>
-                    <div class="area">{p.country.}</div>
-                    <div class="address">{p.address}</div>
+                    <label for="">{{item.fullName}}</label>
+                    <div class="area">{{item.country.name}}&nbsp;&nbsp;{{item.province.name}}&nbsp;&nbsp;{{item.city.name}}&nbsp;&nbsp;{{item.district.name}}</div>
+                    <div class="address">{{item.address}}</div>
                 </div>
-                <div class="item-btn"><input type="button" class="login" data-id="{p.id}" value="登录>"/></div>
-            </div>
-            <div class="item">
-                <div class="item-img">
-                    <img src="../../assets/logo.png" alt="" width="50px" height="50px">
-                </div>
-                <div class="item-text">
-                    <label for="">{p.full}</label>
-                    <div class="area">{p.country}</div>
-                    <div class="address">{p.address}</div>
-                </div>
-                <div class="item-btn"><input type="button" class="login" data-id="{p.id}" value="登录>"/></div>
-            </div>
-            <div class="item">
-                <div class="item-img">
-                    <img src="../../assets/logo.png" alt="" width="50px" height="50px">
-                </div>
-                <div class="item-text">
-                    <label for="">{p.full}</label>
-                    <div class="area">{p.country.}</div>
-                    <div class="address">{p.address}</div>
-                </div>
-                <div class="item-btn"><input type="button" class="login" data-id="{p.id}" value="登录>"/></div>
-            </div>
-            <div class="item">
-                <div class="item-img">
-                    <img src="../../assets/logo.png" alt="" width="50px" height="50px">
-                </div>
-                <div class="item-text">
-                    <label for="">{p.full}</label>
-                    <div class="area">{p.country.}</div>
-                    <div class="address">{p.address}</div>
-                </div>
-                <div class="item-btn"><input type="button" class="login" data-id="{p.id}" value="登录>"/></div>
+                <div class="item-btn"><input type="button" class="login" :key="item.id" value="登录>"/></div>
             </div>
         </div>
     </div>
 </template>
 
 <script>
+    import bus from '../../utils/bus'
     export default {
         data() {
             return {
-                fullName: '点击输入企业全称'
+                items: []
             }
+        },
+        created() {
+            var self = this
+            self.$store.dispatch('_searchName')
+            bus.$on('searchName',function(data){
+                self.items = data
+                console.log(self.items)
+            })
         },
         mounted() {
         },
         methods: {
+        },
+        beforeDestroy() {
         }
     }
 </script>
@@ -90,6 +68,7 @@
     margin: 5px;
 }
 .item-text{
+    text-align: left;
     width: 300px;
 }
 .item-text label{

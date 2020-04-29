@@ -1,4 +1,3 @@
-
 export default {
     // 提示信息
     alertDia (msg) {
