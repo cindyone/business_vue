@@ -30,5 +30,16 @@ export default {
     padding: 0;
     text-align: center;
 }
+.bottom{
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+    font-size: 14px;
+}
 
 </style>

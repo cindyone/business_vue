@@ -11,6 +11,10 @@ Vue.use(animated)
 import publicMethod from './utils/common'
 Vue.prototype.common = publicMethod
 
+import $ from 'jquery'
+import 'bootstrap3/dist/css/bootstrap.css'
+import 'bootstrap3/dist/js/bootstrap.js'
+
 Vue.config.productionTip = false
 
 import store from './store'

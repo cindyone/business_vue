@@ -1,18 +1,25 @@
 <template>
     <div>
         <div class="list" id="list" style="overflow:auto;">
-            <div v-for="item in items" class="item">
+            <div v-for="item in items" :key="item.id" class="item">
                 <div class="item-img">
-                    <img src="../../assets/logo.png" alt="" width="50px" height="50px">
+                    <img src="../../assets/logo.png" alt="" width="60px" height="60px">
                 </div>
                 <div class="item-text">
                     <label for="">{{item.fullName}}</label>
                     <div class="area">{{item.country.name}}&nbsp;&nbsp;{{item.province.name}}&nbsp;&nbsp;{{item.city.name}}&nbsp;&nbsp;{{item.district.name}}</div>
                     <div class="address">{{item.address}}</div>
                 </div>
-                <div class="item-btn"><input type="button" class="login" :key="item.id" value="登录>"/></div>
+                <div class="item-btn">
+                    <input type="button" class="login" value="登录>" @click="enterLogin(item.id)"/>
+                </div>
             </div>
         </div>
+        <div class="bottom">
+            <div>
+                <router-link to="addCompany">未找到企业？</router-link>
+            </div>
+        </div> 
     </div>
 </template>
 
@@ -29,12 +36,20 @@
             self.$store.dispatch('_searchName')
             bus.$on('searchName',function(data){
                 self.items = data
-                console.log(self.items)
+                // console.log(self.items)
             })
         },
         mounted() {
         },
         methods: {
+            enterLogin(id) {
+                let self = this
+                self.$store.dispatch('_enterLogin')
+                bus.$on('enterLogin',function(id){
+                    console.log(id)
+                    self.$router.push('/login?id='+id)
+                })
+            }
         },
         beforeDestroy() {
         }
@@ -60,15 +75,16 @@
     border-radius: 50px;
     width: 60px;
     height: 60px;
-    margin: 10px 20px;
+    margin: 5px 10px;
     background-color: #ccc;
     overflow: hidden;
 }
 .item-img img{
-    margin: 5px;
+    
 }
 .item-text{
     text-align: left;
+    padding-left: 10px;
     width: 300px;
 }
 .item-text label{

@@ -3,10 +3,9 @@
     <div class="alert alert-danger aninated empty" role="alert">企业名称不能为空！</div>
     <div class="alert alert-danger new" role="alert">该企业不存在，请点击新企业注册！</div>
      
-     <div class="alsrtInfo" :style="{display: displayStates}" ref="alertMsg">
+    <div class="alsrtInfo" :style="{display: displayStates}" ref="alertMsg">
         <div class="profPrompt_test">{{alertMsg}}</div>
     </div>
-    
 
     <div class="total">
         <div class="title">
@@ -16,18 +15,6 @@
             <div class="sear">
                 <router-view></router-view>
             </div>
-            
-            <div class="bottom">
-                <div>
-                    <router-link v-if="path == '/search'" to="addCompany">新企业？</router-link>
-                    <router-link v-else-if="path == '/searchResult'" to="addCompany">未找到企业？</router-link>
-                    <router-link v-else to="/login">不是该企业？</router-link>
-                </div>
-                <div>
-                    <router-link v-if="path == '/login'" to="addCompany">忘记密码？</router-link>
-                </div>    
-            </div>
-            
         </div>
     </div>
   </div>
@@ -38,7 +25,7 @@
     export default {
         data() {
             return {
-                path: this.$route.path,
+                path: '',
                 alertMsg: '',
                 displayStates: 'none'
             }
@@ -51,19 +38,21 @@
         },
         mounted() {
             this.$router.push('./search')
-            // handleData(data)
+            
+                this.path = this.$route.path
+                console.log(this.path)
         },
         methods: {
             handleData(data){
-
-                // this.common.alertDia(data)
-                
+                // this.common.alertDia(data)                
                 this.displayStates = 'block'
                 this.alertMsg = data
                 // 延迟2秒后消失
                 window.setTimeout(() => {
                   this.displayStates = 'none'
-                }, 2000)
+                }, 1000)
+            },
+            getPath() {
             }
         }
     }
@@ -146,17 +135,6 @@
 }
 .sear {
     width: 100%;
-    height: 320px;
-}
-.bottom{
-    width: 100%;
-    height: 30px;
-    line-height: 30px;
-    position: absolute;
-    bottom: 0;
-    display: flex;
-    justify-content: space-between;
-    padding: 0 20px;
-    font-size: 14px;
+    height: 350px;
 }
 </style>

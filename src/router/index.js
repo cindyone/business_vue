@@ -5,6 +5,7 @@ import login from '../components/home/login'
 import searchResult from '../components/home/searchResult'
 import search from '../components/home/search'
 import addCompany from '../components/page/addCompany'
+import loginIndex from '../components/page/loginIndex'
 
 Vue.use(Router)
 
@@ -29,6 +30,9 @@ export default new Router({
     },{
       path: '/addCompany',
       component: addCompany
+    },{
+      path: '/loginIndex',
+      component: loginIndex
     }
   ]
 })
