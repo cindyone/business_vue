@@ -3,7 +3,7 @@
         <div class="list" id="list" style="overflow:auto;">
             <div v-for="item in items" :key="item.id" class="item">
                 <div class="item-img">
-                    <img src="../../assets/logo.png" alt="" width="60px" height="60px">
+                    <img src="../../assets/logo.png" alt="" width="70px" height="70px">
                 </div>
                 <div class="item-text">
                     <label for="">{{item.fullName}}</label>
@@ -59,28 +59,25 @@
 <style scoped>
 .list{
     border-bottom: 1px solid #888;
-    width: 450px;
+    width: 449px;
     height: 320px;
     margin: 0 auto;
 }
 .item {
     border-bottom: 1px solid #888;
     border-right: 1px solid #888;
-    height: 80px;
+    height: 90px;
     padding: 5px 0;
     display: flex;
     justify-content: flex-start;
 }
 .item-img{
     border-radius: 50px;
-    width: 60px;
-    height: 60px;
+    width: 70px;
+    height: 70px;
     margin: 5px 10px;
     background-color: #ccc;
     overflow: hidden;
-}
-.item-img img{
-    
 }
 .item-text{
     text-align: left;

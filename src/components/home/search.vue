@@ -84,7 +84,7 @@
     width: 100%;
     margin-top: 20px;
     padding: 0;
-    background-color: #4e79f0;
+    background-color: rgb(0, 157, 211);
     box-sizing: border-box;
 }
 .btn input{

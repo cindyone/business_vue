@@ -125,6 +125,7 @@ export default {
     height: 40px;
     width: 100%;
     text-align: center;
+    outline: none;
 }
 
 .btn {
